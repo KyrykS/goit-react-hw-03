@@ -2,6 +2,7 @@ import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
+import '../ContactForm/ContactForm.module.css'
 
 const ContactForm = ({ addContact }) => {
   const formik = useFormik({
@@ -11,12 +12,12 @@ const ContactForm = ({ addContact }) => {
     },
     validationSchema: Yup.object({
       name: Yup.string()
+        .matches(/^[A-Za-zА-Яа-яЁёІіЇїЄє\s]+$/, 'Поле ім\'я повинно містити тільки букви')
         .min(3, 'Мінімум 3 символи')
         .max(50, 'Максимум 50 символів')
         .required('Обов\'язкове поле'),
       number: Yup.string()
-        .min(3, 'Мінімум 3 символи')
-        .max(50, 'Максимум 50 символів')
+        .matches(/^\d{3}-\d{2}-\d{2}$/, 'Номер телефону повинен бути в форматі xxx-xx-xx')
         .required('Обов\'язкове поле'),
     }),
     onSubmit: (values, { resetForm }) => {
@@ -26,7 +27,7 @@ const ContactForm = ({ addContact }) => {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <form className="contact-form" onSubmit={formik.handleSubmit}>
       <div>
         <label htmlFor="name">Name</label>
         <input
