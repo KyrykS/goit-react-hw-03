@@ -2,7 +2,7 @@ import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
-import '../ContactForm/ContactForm.module.css'
+import './ContactForm.module.css'
 
 const ContactForm = ({ addContact }) => {
   const formik = useFormik({
