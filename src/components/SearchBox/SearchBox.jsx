@@ -5,7 +5,8 @@ const SearchBox = ({ value, onChange }) => (
   <div>
     <label>
       Find contacts by name
-      <input type="text" value={value} onChange={onChange} />
+      <input type="text" id="search"
+      name="search" value={value} onChange={onChange} />
     </label>
   </div>
 );

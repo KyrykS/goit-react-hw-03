@@ -1,27 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Contact from '../Contact/Contact';
 
-const Contact = ({ name, number, onDelete }) => (
-  <li>
-    {name}: {number}
-    <button onClick={onDelete}>Delete</button>
-  </li>
-);
-
-Contact.propTypes = {
-  name: PropTypes.string.isRequired,
-  number: PropTypes.string.isRequired,
-  onDelete: PropTypes.func.isRequired,
-};
-
-const ContactList = ({ contacts, onDelete }) => (
+const ContactList = ({ contacts, onDeleteContact }) => (
   <ul>
-    {contacts.map(contact => (
+    {contacts.map(({ id, name, number }) => (
       <Contact
-        key={contact.id}
-        name={contact.name}
-        number={contact.number}
-        onDelete={() => onDelete(contact.id)}
+        key={id}
+        id={id}
+        name={name}
+        number={number}
+        onDeleteContact={onDeleteContact}
       />
     ))}
   </ul>
@@ -35,7 +24,7 @@ ContactList.propTypes = {
       number: PropTypes.string.isRequired,
     })
   ).isRequired,
-  onDelete: PropTypes.func.isRequired,
+  onDeleteContact: PropTypes.func.isRequired,
 };
 
 export default ContactList;
